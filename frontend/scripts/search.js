@@ -1,5 +1,5 @@
 const apiRoot = "http://localhost:8888/"
-const utils = require("./utils");
+import { isValidWord } from "./utils.js";
 
 class SearchClass {
 
@@ -13,7 +13,7 @@ class SearchClass {
         const xhttp = new XMLHttpRequest();
         let word = document.getElementById("input").value;
         //TODO: make sure input is alpha 
-        if (utils.isValidWord(word)) {
+        if (isValidWord(word)) {
             xhttp.open("GET", `${apiRoot}/definitions/?word=${word}`, true);
             xhttp.send();
             xhttp.onreadystatechange = () => {
