@@ -14,10 +14,11 @@ class StoreClass {
         let word = document.getElementById("input").value;
         //TODO: make sure input is alpha 
         if (isValidWord(word)) {
-            // xhttp.open("POST", `${apiRoot}/definitions/`, true);
-            // xhttp.send(word);
-            // xhttp.onreadystatechange = () => {
-            alert("YESDS");
+            xhttp.open("POST", `${apiRoot}/definitions/`, true);
+            xhttp.send(word);
+            xhttp.onreadystatechange = () => {
+                // alert("YESDS");
+            }
         }
         else {
             alert("Please enter a valid word (letters only)");
