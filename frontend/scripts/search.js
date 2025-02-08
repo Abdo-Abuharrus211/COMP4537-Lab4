@@ -1,5 +1,6 @@
-const http = require('http');
 const apiRoot = "http://localhost:8888/"
+const utils = require("./utils");
+
 class SearchClass {
 
     constructor() {
@@ -12,10 +13,16 @@ class SearchClass {
         const xhttp = new XMLHttpRequest();
         let word = document.getElementById("input").value;
         //TODO: make sure input is alpha 
-        xhttp.open("GET", `${apiRoot}/definitions/?word=${word}`, true);
-        xhttp.send();
-        xhttp.onreadystatechange = () => {
+        if (utils.isValidWord(word)) {
+            xhttp.open("GET", `${apiRoot}/definitions/?word=${word}`, true);
+            xhttp.send();
+            xhttp.onreadystatechange = () => {
 
+            }
+        }
+        else {
+            alert("Please enter a valid word (letters only)");
+            return false;
         }
 
     }
@@ -24,11 +31,11 @@ class SearchClass {
 
 
 
-window.onload(() => {
+document.addEventListener('DOMContentLoaded', () => {
     main();
 });
 
 function main() {
-    const searcher = SearchClass();
+    const searcher = new SearchClass();
 
 }

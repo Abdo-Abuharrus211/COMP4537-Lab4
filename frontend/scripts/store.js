@@ -1,35 +1,42 @@
 const apiRoot = "http://localhost:8888/"
+const utils = require("./utils");
 
 class StoreClass {
-    
-    constructor(){
+
+    constructor() {
     }
 
     /*
     * Make POST request to store the word.
     */
-    storeWord(){
+    storeWord() {
         const xhttp = new XMLHttpRequest();
         let word = document.getElementById("input").value;
         //TODO: make sure input is alpha 
-        xhttp.open("POST", `${apiRoot}/definitions/`, true);
-        xhttp.send(word);
-        xhttp.onreadystatechange = () =>{
-
+        if (utils.isValidWord(word)) {
+            // xhttp.open("POST", `${apiRoot}/definitions/`, true);
+            // xhttp.send(word);
+            // xhttp.onreadystatechange = () => {
+            alert("YESDS");
+        }
+        else {
+            alert("Please enter a valid word (letters only)");
+            return false;
         }
 
     }
+
 }
 
 
-window.onload(() =>{
+document.addEventListener('DOMContentLoaded', () => {
     main();
 });
 
-function main(){
-    const storer = StoreClass();
+function main() {
+    const storer = new StoreClass();
     const submitBtn = document.getElementById("submit-btn");
-    submitBtn.addEventListener("click", ()=>{
+    submitBtn.addEventListener("click", () => {
         storer.storeWord();
     })
 
